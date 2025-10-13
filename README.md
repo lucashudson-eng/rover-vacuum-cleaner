@@ -1,1 +1,17 @@
 # rover
+
+## Items
+
+- [BTT PI 2](https://pt.aliexpress.com/item/1005006869449371.html?spm=a2g0o.order_list.order_list_main.5.6ecdcaa4VrRXkU&gatewayAdapt=glo2bra)
+- [ESP32-S3 Nano](https://pt.aliexpress.com/item/1005007291319086.html?spm=a2g0o.order_list.order_list_main.35.6ecdcaa4UuJD2Q&gatewayAdapt=glo2bra)
+- [Lidar 2D 360º LD14P](https://pt.aliexpress.com/item/1005008670123046.html?spm=a2g0o.order_list.order_list_main.55.6ecdcaa4UuJD2Q&gatewayAdapt=glo2bra)
+- [N20 DC Motor 6V 500RPM w/ Magnetic Encoders](https://pt.aliexpress.com/item/1005004999529855.html?spm=a2g0o.order_list.order_list_main.30.6ecdcaa4UuJD2Q&gatewayAdapt=glo2bra)
+- [Motor Driver TB6612FNG](https://pt.aliexpress.com/item/1005005756666126.html?spm=a2g0o.productlist.main.1.5a294de9Wc5ZRX&algo_pvid=71cd1b4f-b381-424e-9564-99293b590a05&algo_exp_id=71cd1b4f-b381-424e-9564-99293b590a05-0&pdp_ext_f=%7B%22order%22%3A%22671%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&pdp_npi=6%40dis%21BRL%217.62%217.62%21%21%211.29%211.29%21%402101f4c117603634409795074ee678%2112000034243349943%21sea%21BR%212609103932%21X%211%210%21n_tag%3A-29919%3Bd%3Ab6a655b5%3Bm03_new_user%3A-29895&curPageLogUid=zUc4WJsNfxLW&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005005756666126%7C_p_origin_prod%3A)
+- [IMU 9-DOF MPU-9250](https://pt.aliexpress.com/item/1005007986288616.html?spm=a2g0o.order_list.order_list_main.5.6ecdcaa4UuJD2Q&gatewayAdapt=glo2bra)
+- [Wheels 65mm](https://pt.aliexpress.com/item/1005005293126427.html?spm=a2g0o.order_list.order_list_main.25.6ecdcaa4UuJD2Q&gatewayAdapt=glo2bra)
+- [Chassi 4WD](https://pt.aliexpress.com/item/1005007026658421.html?spm=a2g0o.order_list.order_list_main.10.6ecdcaa4UuJD2Q&gatewayAdapt=glo2bra)
+- [Camera OV5647](https://pt.aliexpress.com/item/1005006279352733.html?spm=a2g0o.productlist.main.4.56ff7acaNgMLwa&algo_pvid=590cb42b-17bc-4a75-8a59-095083667ec9&algo_exp_id=590cb42b-17bc-4a75-8a59-095083667ec9-3&pdp_ext_f=%7B%22order%22%3A%22160%22%2C%22eval%22%3A%221%22%2C%22fromPage%22%3A%22search%22%7D&pdp_npi=6%40dis%21BRL%2150.78%2115.41%21%21%2161.37%2118.63%21%402101f43717603634664327876eb2c9%2112000036586833896%21sea%21BR%212609103932%21X%211%210%21n_tag%3A-29919%3Bd%3Ab6a655b5%3Bm03_new_user%3A-29895%3BpisId%3A5000000189119060&curPageLogUid=QsAUfhIPxS6e&utparam-url=scene%3Asearch%7Cquery_from%3A%7Cx_object_id%3A1005006279352733%7C_p_origin_prod%3A)
+- [ToF VL53L1X/TOF400C](https://pt.aliexpress.com/item/1005009534829792.html?spm=a2g0o.order_list.order_list_main.15.6ecdcaa4UuJD2Q&gatewayAdapt=glo2bra)
+- [I2C Multiplexer TCA9548A](https://pt.aliexpress.com/item/1005004996004241.html?spm=a2g0o.order_list.order_list_main.40.6ecdcaa4UuJD2Q&gatewayAdapt=glo2bra)
+- Buck Step Down 6V 3A
+- Battery 3s 2500mah
