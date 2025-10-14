@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="rover">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="2.04381831142401E-09 1.56408869429724E-17 -0.0015"
+        rpy="0 0 0" />
+      <mass
+        value="0.0757356843292425" />
+      <inertia
+        ixx="9.30542487791855E-05"
+        ixy="-1.72973378957802E-10"
+        ixz="-1.66079077298931E-21"
+        iyy="0.000382138338193282"
+        iyz="3.43912726365504E-23"
+        izz="0.000475078982714826" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="LD14P_Link">
+    <inertial>
+      <origin
+        xyz="0.015195 -9.1663E-05 -0.019909"
+        rpy="0 0 0" />
+      <mass
+        value="0.025443" />
+      <inertia
+        ixx="5.3011E-06"
+        ixy="-1.5024E-08"
+        ixz="1.2999E-09"
+        iyy="8.6464E-06"
+        iyz="-1.8484E-08"
+        izz="1.3337E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/LD14P_Link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/LD14P_Link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LD14P"
+    type="fixed">
+    <origin
+      xyz="-0.00012702 0 0.03845"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="LD14P_Link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Mount_Link_FR">
+    <inertial>
+      <origin
+        xyz="-2.8937E-05 0.0057418 0.00032322"
+        rpy="0 0 0" />
+      <mass
+        value="0.00088951" />
+      <inertia
+        ixx="2.4974E-08"
+        ixy="-3.6241E-11"
+        ixz="-9.203E-11"
+        iyy="6.2294E-08"
+        iyz="1.983E-09"
+        izz="5.9248E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Mount_Link_FR.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.44706 0.47451 0.50196 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Mount_Link_FR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Mount_FR"
+    type="fixed">
+    <origin
+      xyz="0.055873 -0.05 -0.0092866"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Mount_Link_FR" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Motor_Link_FR">
+    <inertial>
+      <origin
+        xyz="-6.0305E-05 0.026341 0.00088289"
+        rpy="0 0 0" />
+      <mass
+        value="0.0028388" />
+      <inertia
+        ixx="5.2064E-08"
+        ixy="8.1692E-12"
+        ixz="-2.1321E-10"
+        iyy="5.1223E-08"
+        iyz="9.4713E-12"
+        izz="5.0388E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Motor_Link_FR.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79608 0.79608 0.79608 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Motor_Link_FR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Motor_FR"
+    type="fixed">
+    <origin
+      xyz="7.6341E-05 -0.0092 0.0012869"
+      rpy="0 0 0" />
+    <parent
+      link="Mount_Link_FR" />
+    <child
+      link="Motor_Link_FR" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Wheel_Link_FR">
+    <inertial>
+      <origin
+        xyz="5.7778E-11 -0.01821 -4.7703E-11"
+        rpy="0 0 0" />
+      <mass
+        value="0.035175" />
+      <inertia
+        ixx="1.5237E-05"
+        ixy="2.2092E-14"
+        ixz="4.4745E-10"
+        iyy="2.5786E-05"
+        iyz="-3.1145E-14"
+        izz="1.5237E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Wheel_Link_FR.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Wheel_Link_FR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Wheel_FR"
+    type="continuous">
+    <origin
+      xyz="-7.6341E-05 0.0084 0"
+      rpy="0 0 0" />
+    <parent
+      link="Motor_Link_FR" />
+    <child
+      link="Wheel_Link_FR" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  <link
+    name="Mount_Link_FL">
+    <inertial>
+      <origin
+        xyz="2.89374526260128E-05 -0.00574180489474202 0.000323223503266032"
+        rpy="0 0 0" />
+      <mass
+        value="0.000889511101495515" />
+      <inertia
+        ixx="2.497444539411E-08"
+        ixy="-3.6240651239437E-11"
+        ixz="9.2029843628899E-11"
+        iyy="6.22940092253975E-08"
+        iyz="-1.98296057293581E-09"
+        izz="5.92484943284019E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Mount_Link_FL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.447058823529412 0.474509803921569 0.501960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Mount_Link_FL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Mount_FL"
+    type="fixed">
+    <origin
+      xyz="0.055873 0.05 -0.0092866"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Mount_Link_FL" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Motor_Link_FL">
+    <inertial>
+      <origin
+        xyz="6.03046968803145E-05 -0.0263412887088174 0.000882893673382839"
+        rpy="0 0 0" />
+      <mass
+        value="0.00283879570267248" />
+      <inertia
+        ixx="5.20644968727663E-08"
+        ixy="8.16932903691748E-12"
+        ixz="2.13211914887738E-10"
+        iyy="5.12226271656975E-08"
+        iyz="-9.4713293078595E-12"
+        izz="5.03883033851809E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Motor_Link_FL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.796078431372549 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Motor_Link_FL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Motor_FL"
+    type="fixed">
+    <origin
+      xyz="-7.63405011604268E-05 0.00919999999999997 0.00128688689012445"
+      rpy="0 0 0" />
+    <parent
+      link="Mount_Link_FL" />
+    <child
+      link="Motor_Link_FL" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Wheel_Link_FL">
+    <inertial>
+      <origin
+        xyz="-7.45820558090138E-11 0.0182100813888 7.17062607208385E-12"
+        rpy="0 0 0" />
+      <mass
+        value="0.035174698582227" />
+      <inertia
+        ixx="1.52366268256632E-05"
+        ixy="3.76506163752978E-14"
+        ixz="-2.1550742782768E-10"
+        iyy="2.57857822002641E-05"
+        iyz="6.3766971496481E-15"
+        izz="1.52375222771183E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Wheel_Link_FL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Wheel_Link_FL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Wheel_FL"
+    type="continuous">
+    <origin
+      xyz="7.63405011604476E-05 -0.00840000000000002 0"
+      rpy="0 0 0" />
+    <parent
+      link="Motor_Link_FL" />
+    <child
+      link="Wheel_Link_FL" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="Mount_Link_BL">
+    <inertial>
+      <origin
+        xyz="2.89374526260197E-05 -0.00574180489474202 0.000323223503266031"
+        rpy="0 0 0" />
+      <mass
+        value="0.000889511101495515" />
+      <inertia
+        ixx="2.497444539411E-08"
+        ixy="-3.62406512394373E-11"
+        ixz="9.20298436289031E-11"
+        iyy="6.22940092253975E-08"
+        iyz="-1.98296057293581E-09"
+        izz="5.92484943284018E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Mount_Link_BL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.447058823529412 0.474509803921569 0.501960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Mount_Link_BL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Mount_BL"
+    type="fixed">
+    <origin
+      xyz="-0.056127 0.05 -0.0092866"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Mount_Link_BL" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Motor_Link_BL">
+    <inertial>
+      <origin
+        xyz="-6.030459023839E-05 -0.0263412887982114 -0.000882893768063883"
+        rpy="0 0 0" />
+      <mass
+        value="0.00283879567406719" />
+      <inertia
+        ixx="5.20644961834455E-08"
+        ixy="-8.16930221775181E-12"
+        ixz="2.13211883274157E-10"
+        iyy="5.12226271617704E-08"
+        iyz="9.4712344391227E-12"
+        izz="5.03883026605782E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Motor_Link_BL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.796078431372549 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Motor_Link_BL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Motor_BL"
+    type="fixed">
+    <origin
+      xyz="7.63405011606419E-05 0.00919999999999999 0.0012863796207111"
+      rpy="0 0 0" />
+    <parent
+      link="Mount_Link_BL" />
+    <child
+      link="Motor_Link_BL" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Wheel_Link_BL">
+    <inertial>
+      <origin
+        xyz="4.3705178365272E-12 0.0182100813888 7.47986212898399E-11"
+        rpy="0 0 0" />
+      <mass
+        value="0.0351746985822267" />
+      <inertia
+        ixx="1.52375048767784E-05"
+        ixy="7.78410523677623E-15"
+        ixz="2.48438778432416E-10"
+        iyy="2.57857822002643E-05"
+        iyz="-3.73823276527771E-14"
+        izz="1.52366442259736E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Wheel_Link_BL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Wheel_Link_BL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Wheel_BL"
+    type="continuous">
+    <origin
+      xyz="-7.63405011606141E-05 -0.00840000000000001 0"
+      rpy="0 0 0" />
+    <parent
+      link="Motor_Link_BL" />
+    <child
+      link="Wheel_Link_BL" />
+    <axis
+      xyz="0 -1 0" />
+  </joint>
+  <link
+    name="Mount_Link_BR">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Mount_Link_BR.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Mount_Link_BR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Mount_BR"
+    type="fixed">
+    <origin
+      xyz="-0.0561270249631181 -0.0499999999999994 -0.00928663325541777"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Mount_Link_BR" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Motor_Link_BR">
+    <inertial>
+      <origin
+        xyz="6.03046153492687E-05 0.0263412889891294 -0.00088289376174546"
+        rpy="0 0 0" />
+      <mass
+        value="0.0028387955894548" />
+      <inertia
+        ixx="5.20644945289959E-08"
+        ixy="-8.16931021094843E-12"
+        ixz="-2.13211916263588E-10"
+        iyy="5.122262714054E-08"
+        iyz="-9.47133094088897E-12"
+        izz="5.03883010411983E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Motor_Link_BR.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.796078431372549 0.796078431372549 0.796078431372549 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Motor_Link_BR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Motor_BR"
+    type="fixed">
+    <origin
+      xyz="-7.63405011606072E-05 -0.0092 0.0012863796207111"
+      rpy="0 0 0" />
+    <parent
+      link="Mount_Link_BR" />
+    <child
+      link="Motor_Link_BR" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="Wheel_Link_BR">
+    <inertial>
+      <origin
+        xyz="6.12851297487893E-11 -0.0182100813888 4.31050247579057E-11"
+        rpy="0 0 0" />
+      <mass
+        value="0.0351746985822271" />
+      <inertia
+        ixx="1.52366604616097E-05"
+        ixy="3.58796086606825E-14"
+        ixz="-2.74647742451226E-10"
+        iyy="2.57857822002649E-05"
+        iyz="1.30708201068383E-14"
+        izz="1.5237488641291E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Wheel_Link_BR.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rover/meshes/Wheel_Link_BR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="Wheel_BR"
+    type="continuous">
+    <origin
+      xyz="7.63405011606072E-05 0.0084 0"
+      rpy="0 0 0" />
+    <parent
+      link="Motor_Link_BR" />
+    <child
+      link="Wheel_Link_BR" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+</robot>
