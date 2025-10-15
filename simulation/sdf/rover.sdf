@@ -544,13 +544,9 @@
                 <pose>0 0 0 0 0 0</pose>
                 <geometry>
                 <mesh>
-                    <uri>file:///home/hudson/rover/simulation/meshes/Wheel_Link_BL.STL</uri>
+                    <uri>file:///home/hudson/rover/simulation/textures/Wheel_Link_BL.dae</uri>
                 </mesh>
                 </geometry>
-                <material>
-                <ambient>0.792156862745098 0.819607843137255 0.933333333333333 1</ambient>
-                <diffuse>0.792156862745098 0.819607843137255 0.933333333333333 1</diffuse>
-                </material>
             </visual>
             <collision name="Wheel_Link_BL_collision">
                 <pose>0 0 0 0 0 0</pose>
