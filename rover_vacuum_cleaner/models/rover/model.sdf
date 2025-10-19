@@ -8,6 +8,7 @@
             <update_rate>100</update_rate>
             <visualize>true</visualize>
             <topic>imu</topic>
+            <gz_frame_id>rover/base_link</gz_frame_id>
         </sensor>
 
         <inertial>

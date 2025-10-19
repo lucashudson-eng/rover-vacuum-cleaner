@@ -6,7 +6,6 @@ ekf_filter_node:
 
     map_frame: rover/map
     odom_frame: rover/odom
-    imu0_frame: rover/base_link/imu_sensor
     base_link_frame: rover/base_link
     world_frame: rover/odom
 
