@@ -7,7 +7,7 @@ package_name = 'rover_vacuum_cleaner'
 setup(
     name=package_name,
     version='0.0.0',
-    packages=find_packages(exclude=['test']),
+    packages=find_packages(),
     data_files=[
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
@@ -22,15 +22,10 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='hudson',
+    maintainer='Lucas Hudson',
     maintainer_email='lucashudson.eng@gmail.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
-    extras_require={
-        'test': [
-            'pytest',
-        ],
-    },
+    description='Autonomous robotic rover designed for navigation and task execution, inspired by smart vacuum cleaners.',
+    license='GPL-3.0-or-later',
     entry_points={
         'console_scripts': [
         ],

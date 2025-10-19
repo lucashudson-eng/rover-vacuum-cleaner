@@ -47,8 +47,7 @@ def generate_launch_description():
                 'world': 'indoor_house_world',
                 'file': PathJoinSubstitution([example_pkg_path, 'models/rover/model.sdf']),
                 'entity_name': 'rover',
-                'x': '1.0', 'y': '0.0', 'z': '0.05',
-                'R': '0.0', 'P': '0.0', 'Y': '0.0'
+                'x': '1.0', 'y': '0.0', 'z': '0.05'
             }.items(),
         ),
         Node(
