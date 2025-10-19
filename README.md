@@ -1,5 +1,7 @@
 # rover
 
+Autonomous robotic rover designed for navigation and task execution, inspired by smart vacuum cleaners.
+
 ## Items
 
 - [BTT PI 2](https://pt.aliexpress.com/item/1005006869449371.html?spm=a2g0o.order_list.order_list_main.5.6ecdcaa4VrRXkU&gatewayAdapt=glo2bra)
