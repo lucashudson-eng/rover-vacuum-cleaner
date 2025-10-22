@@ -1,0 +1,50 @@
+/* Botão hambúrguer dentro da hero-section */
+.global-menu-toggle {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1001;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.global-menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+.global-menu-toggle:active {
+  transform: scale(0.95);
+}
+
+.global-menu-toggle:focus {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .global-menu-toggle {
+    top: 15px;
+    left: 15px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .global-menu-toggle {
+    top: 10px;
+    left: 10px;
+    padding: 8px;
+  }
+}
