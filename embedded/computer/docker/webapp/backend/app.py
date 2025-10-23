@@ -129,5 +129,18 @@ def camera_status():
             'device': CAMERA_DEVICE
         })
 
+@app.route('/api/rover/status', methods=['GET'])
+def rover_status():
+    """Retorna dados do rover incluindo bateria e corrente"""
+    # Dados fixos - serão substituídos por dados reais posteriormente
+    return jsonify({
+        'battery': {
+            'percentage': 0
+        },
+        'power': {
+            'current_consumption': 0
+        }
+    })
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=PORT, debug=True)

@@ -1,13 +1,38 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './Sidebar.css'
 
 const Sidebar = ({ activeSection, onSectionClick, isOpen, onLogoClick }) => {
+  const [roverData, setRoverData] = useState({
+    battery: { percentage: 0 },
+    power: { current_consumption: 0 }
+  })
+
   const menuItems = [
     { id: 'mapa', label: 'Map', emoji: '🗺️' },
     { id: 'camera', label: 'Camera', emoji: '📷' },
     { id: 'controle', label: 'Control', emoji: '🎮' },
     { id: 'configuracoes', label: 'Settings', emoji: '⚙️' }
   ]
+
+  // Função para buscar dados do rover
+  const fetchRoverData = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/api/rover/status')
+      if (response.ok) {
+        const data = await response.json()
+        setRoverData(data)
+      }
+    } catch (error) {
+      console.error('Erro ao buscar dados do rover:', error)
+    }
+  }
+
+  // Atualiza dados do rover a cada 5 segundos
+  useEffect(() => {
+    fetchRoverData()
+    const interval = setInterval(fetchRoverData, 5000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
@@ -34,9 +59,11 @@ const Sidebar = ({ activeSection, onSectionClick, isOpen, onLogoClick }) => {
       </nav>
       
       <div className="sidebar-footer">
-        <div className="status-indicator">
-          <div className="status-dot online"></div>
-          <span>System Online</span>
+        <div className="rover-data">
+          <span className="rover-icon">🔋</span>
+          <span className="rover-value">{roverData.battery.percentage}%</span>
+          <span className="rover-icon">⚡</span>
+          <span className="rover-value">{roverData.power.current_consumption}A</span>
         </div>
       </div>
     </aside>

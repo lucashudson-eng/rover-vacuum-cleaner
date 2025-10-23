@@ -61,10 +61,12 @@
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   transition: all 0.3s ease;
   border-radius: 8px;
-  padding: 8px 12px;
+  padding: 6px 10px;
+  max-width: calc(100vw - 200px);
+  overflow: hidden;
 }
 
 .header-title-center:hover {
@@ -88,9 +90,34 @@
   white-space: nowrap;
 }
 
-/* Espaçador para balancear o layout */
-.header-spacer {
-  width: 40px; /* Mesma largura do botão hambúrguer */
+.header-title-full {
+  display: inline;
+}
+
+.header-title-short {
+  display: none;
+}
+
+/* Dados do rover no header */
+.header-rover-data {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 6px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+.header-rover-icon {
+  font-size: 1rem;
+}
+
+.header-rover-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ecf0f1;
 }
 
 @keyframes float {
@@ -204,24 +231,25 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
-.header-status-indicator {
+.header-menu-rover-data {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  color: #bdc3c7;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.header-status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #e74c3c;
-  animation: pulse 2s infinite;
+.header-menu-rover-icon {
+  font-size: 1.1rem;
 }
 
-.header-status-dot.online {
-  background: #27ae60;
+.header-menu-rover-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ecf0f1;
 }
 
 @keyframes pulse {
@@ -257,8 +285,30 @@
     max-width: 300px;
   }
   
-  .header-spacer {
-    width: 40px; /* Manter consistência com o botão */
+  .header-rover-data {
+    gap: 6px;
+    padding: 5px 8px;
+  }
+  
+  .header-rover-icon {
+    font-size: 0.9rem;
+  }
+  
+  .header-rover-value {
+    font-size: 0.8rem;
+  }
+  
+  .header-menu-rover-data {
+    gap: 10px;
+    padding: 6px 10px;
+  }
+  
+  .header-menu-rover-icon {
+    font-size: 1rem;
+  }
+  
+  .header-menu-rover-value {
+    font-size: 0.85rem;
   }
 }
 
@@ -274,6 +324,40 @@
   
   .header-brand {
     gap: 8px;
+  }
+  
+  .header-title-full {
+    display: none;
+  }
+  
+  .header-title-short {
+    display: inline;
+  }
+  
+  .header-rover-data {
+    gap: 4px;
+    padding: 4px 6px;
+  }
+  
+  .header-rover-icon {
+    font-size: 0.8rem;
+  }
+  
+  .header-rover-value {
+    font-size: 0.75rem;
+  }
+  
+  .header-menu-rover-data {
+    gap: 8px;
+    padding: 5px 8px;
+  }
+  
+  .header-menu-rover-icon {
+    font-size: 0.9rem;
+  }
+  
+  .header-menu-rover-value {
+    font-size: 0.8rem;
   }
 }
 

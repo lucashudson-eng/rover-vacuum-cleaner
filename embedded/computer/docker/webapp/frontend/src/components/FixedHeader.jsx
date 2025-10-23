@@ -4,6 +4,23 @@ import './FixedHeader.css'
 
 const FixedHeader = ({ activeSection, onSectionClick, isMenuOpen, onMenuToggle, onLogoClick }) => {
   const [isVisible, setIsVisible] = useState(false)
+  const [roverData, setRoverData] = useState({
+    battery: { percentage: 0 },
+    power: { current_consumption: 0 }
+  })
+
+  // Função para buscar dados do rover
+  const fetchRoverData = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/api/rover/status')
+      if (response.ok) {
+        const data = await response.json()
+        setRoverData(data)
+      }
+    } catch (error) {
+      console.error('Erro ao buscar dados do rover:', error)
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +34,13 @@ const FixedHeader = ({ activeSection, onSectionClick, isMenuOpen, onMenuToggle, 
 
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  // Atualiza dados do rover a cada 5 segundos
+  useEffect(() => {
+    fetchRoverData()
+    const interval = setInterval(fetchRoverData, 5000)
+    return () => clearInterval(interval)
   }, [])
 
   const menuItems = [
@@ -55,11 +79,19 @@ const FixedHeader = ({ activeSection, onSectionClick, isMenuOpen, onMenuToggle, 
             onMenuToggle(false) // Close menu when clicking
           }} style={{ cursor: 'pointer' }}>
             <img src="/android-chrome-192x192.png" alt="RVC" className="header-logo" />
-            <span className="header-title">Rover Vacuum Cleaner</span>
+            <span className="header-title">
+              <span className="header-title-full">Rover Vacuum Cleaner</span>
+              <span className="header-title-short">RVC</span>
+            </span>
           </div>
 
-          {/* Empty space on the right for balance */}
-          <div className="header-spacer"></div>
+          {/* Dados do rover alinhados à direita */}
+          <div className="header-rover-data">
+            <span className="header-rover-icon">🔋</span>
+            <span className="header-rover-value">{roverData.battery.percentage}%</span>
+            <span className="header-rover-icon">⚡</span>
+            <span className="header-rover-value">{roverData.power.current_consumption}A</span>
+          </div>
         </div>
       </header>
 
@@ -89,9 +121,11 @@ const FixedHeader = ({ activeSection, onSectionClick, isMenuOpen, onMenuToggle, 
         </nav>
         
         <div className="header-menu-footer">
-          <div className="header-status-indicator">
-            <div className="header-status-dot online"></div>
-            <span>System Online</span>
+          <div className="header-menu-rover-data">
+            <span className="header-menu-rover-icon">🔋</span>
+            <span className="header-menu-rover-value">{roverData.battery.percentage}%</span>
+            <span className="header-menu-rover-icon">⚡</span>
+            <span className="header-menu-rover-value">{roverData.power.current_consumption}A</span>
           </div>
         </div>
       </div>

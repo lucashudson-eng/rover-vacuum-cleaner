@@ -111,6 +111,27 @@
   border-top: 1px solid rgba(255,255,255,0.1);
 }
 
+.rover-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.rover-icon {
+  font-size: 1.2rem;
+}
+
+.rover-value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ecf0f1;
+}
+
 .status-indicator {
   display: flex;
   align-items: center;
@@ -131,6 +152,10 @@
   background: #27ae60;
 }
 
+.status-dot.offline {
+  background: #e74c3c;
+}
+
 @keyframes pulse {
   0% { opacity: 1; }
   50% { opacity: 0.5; }
@@ -146,6 +171,19 @@
   
   .sidebar.open {
     transform: translateX(0);
+  }
+
+  .rover-data {
+    padding: 8px 10px;
+    gap: 12px;
+  }
+
+  .rover-icon {
+    font-size: 1.1rem;
+  }
+
+  .rover-value {
+    font-size: 0.9rem;
   }
 }
 

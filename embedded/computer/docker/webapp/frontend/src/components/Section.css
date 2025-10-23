@@ -635,6 +635,15 @@
     padding: 20px;
   }
   
+  .section-header h2 {
+    font-size: 1.8rem;
+    gap: 10px;
+  }
+  
+  .section-emoji {
+    font-size: 1.2em;
+  }
+  
   .mapa-container,
   .camera-container,
   .controle-container {
@@ -678,5 +687,16 @@
   
   .settings-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-header h2 {
+    font-size: 1.5rem;
+    gap: 8px;
+  }
+  
+  .section-emoji {
+    font-size: 1em;
   }
 }
