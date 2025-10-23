@@ -1,6 +1,5 @@
 .section {
-  min-height: 100vh;
-  padding: 40px;
+  padding: 20px;
   background: white;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -9,9 +8,8 @@
 
 .section-header {
   text-align: center;
-  margin-bottom: 40px;
-  padding-bottom: 20px;
-  border-bottom: 2px solid #ecf0f1;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
 }
 
 .section-header h2 {
@@ -28,6 +26,11 @@
   color: #3498db;
 }
 
+.section-emoji {
+  font-size: 1.5em;
+  margin-right: 10px;
+}
+
 .section-header p {
   font-size: 1.1rem;
   color: #7f8c8d;
@@ -37,7 +40,8 @@
 .mapa-container {
   display: flex;
   gap: 30px;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: center;
 }
 
 .mapa-grid {
@@ -147,19 +151,56 @@
 .camera-container {
   display: flex;
   gap: 30px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .camera-view {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .camera-feed {
-  width: 100%;
-  height: 400px;
+  width: 853px; /* Largura fixa para 16:9 aspect ratio */
+  height: 480px; /* Altura fixa para 16:9 aspect ratio */
   background: #000;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
+  margin: 0 auto;
+}
+
+.stream-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-stream {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  transition: transform 0.1s ease;
+}
+
+.video-stream.zoomable {
+  cursor: grab;
+}
+
+.video-stream.zoomable:active {
+  cursor: grabbing;
+}
+
+/* Melhorar experiência de touch no mobile */
+.video-stream {
+  touch-action: none; /* Previne scroll da página durante touch */
+  user-select: none; /* Previne seleção de texto */
 }
 
 .stream-placeholder {
@@ -183,23 +224,17 @@
   animation: float 3s ease-in-out infinite;
 }
 
-.stream-overlay {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  color: white;
-  background: rgba(0,0,0,0.7);
-  padding: 10px;
-  border-radius: 5px;
-}
 
 .stream-off {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
   height: 100%;
   color: #6c757d;
+  min-height: 270px; /* Garante altura mínima no mobile */
+  box-sizing: border-box; /* Inclui padding/border no cálculo da largura */
 }
 
 .off-icon {
@@ -212,6 +247,97 @@
   padding: 20px;
   background: #f8f9fa;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+
+.stream-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stream-btn.start {
+  background: #28a745;
+  color: white;
+}
+
+.stream-btn.stop {
+  background: #dc3545;
+  color: white;
+}
+
+.stream-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.stream-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+
+.zoom-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.zoom-btn {
+  padding: 8px 12px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.zoom-btn:hover {
+  background: #0056b3;
+  transform: scale(1.05);
+}
+
+.zoom-display {
+  font-weight: bold;
+  color: #2c3e50;
+  min-width: 50px;
+  text-align: center;
+}
+
+
+.retry-btn {
+  padding: 8px 16px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.retry-btn:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+}
+
+.camera-info {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: 5px;
 }
 
 .control-group {
@@ -496,6 +622,14 @@
 }
 
 /* Responsividade */
+@media (max-width: 1024px) {
+  .camera-feed {
+    width: 100%;
+    max-width: 640px;
+    height: 360px; /* 16:9 para tablet */
+  }
+}
+
 @media (max-width: 768px) {
   .section {
     padding: 20px;
@@ -507,9 +641,34 @@
     flex-direction: column;
   }
   
+  .camera-controls {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
   .mapa-grid {
     width: 100%;
     height: 300px;
+  }
+  
+  .camera-feed {
+    width: 90vw; /* 90% da largura da viewport no mobile */
+    max-width: 90vw; /* 90% da largura da viewport no mobile */
+    height: 50.625vw; /* Altura proporcional (90% * 9/16 = proporção 16:9) */
+    margin: 0 auto; /* Centraliza com margens automáticas */
+    padding: 0; /* Remove padding que pode afetar a largura */
+  }
+  
+  .stream-off {
+    min-height: 50.625vw; /* Altura proporcional para mobile */
+    width: 100% !important; /* Força largura total igual à imagem de transmissão */
+    height: 100% !important; /* Força altura total igual à imagem de transmissão */
+  }
+  
+  .video-stream {
+    width: 100% !important; /* Força largura total no mobile */
+    height: 100% !important; /* Força altura total no mobile */
+    object-fit: cover; /* Mantém proporção cobrindo toda a área */
   }
   
   .dpad-grid {

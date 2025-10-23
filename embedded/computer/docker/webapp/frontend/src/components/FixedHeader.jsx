@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Map, Camera, Gamepad2, Settings, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import './FixedHeader.css'
 
 const FixedHeader = ({ activeSection, onSectionClick, isMenuOpen, onMenuToggle, onLogoClick }) => {
@@ -10,7 +10,7 @@ const FixedHeader = ({ activeSection, onSectionClick, isMenuOpen, onMenuToggle, 
       const heroSection = document.querySelector('.hero-section')
       if (heroSection) {
         const heroRect = heroSection.getBoundingClientRect()
-        // Mostrar header quando a seção hero sair da tela
+        // Show header when hero section leaves the screen
         setIsVisible(heroRect.bottom < 0)
       }
     }
@@ -20,10 +20,10 @@ const FixedHeader = ({ activeSection, onSectionClick, isMenuOpen, onMenuToggle, 
   }, [])
 
   const menuItems = [
-    { id: 'mapa', label: 'Mapa', icon: Map },
-    { id: 'camera', label: 'Câmera', icon: Camera },
-    { id: 'controle', label: 'Controle', icon: Gamepad2 },
-    { id: 'configuracoes', label: 'Configurações', icon: Settings }
+    { id: 'mapa', label: 'Map', emoji: '🗺️' },
+    { id: 'camera', label: 'Camera', emoji: '📷' },
+    { id: 'controle', label: 'Control', emoji: '🎮' },
+    { id: 'configuracoes', label: 'Settings', emoji: '⚙️' }
   ]
 
   const handleSectionClick = (sectionId) => {
@@ -40,30 +40,30 @@ const FixedHeader = ({ activeSection, onSectionClick, isMenuOpen, onMenuToggle, 
       {/* Header fixo - só aparece em mobile e quando faz scroll */}
       <header className={`fixed-header ${isVisible ? 'visible' : ''}`}>
         <div className="header-content">
-          {/* Menu hambúrguer à esquerda */}
+          {/* Hamburger menu on the left */}
           <button 
             className="header-menu-toggle"
             onClick={toggleMenu}
-            aria-label="Abrir menu"
+            aria-label="Open menu"
           >
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
-          {/* Logo e título centralizados */}
+          {/* Logo and title centered */}
           <div className="header-title-center" onClick={() => {
             onLogoClick()
-            onMenuToggle(false) // Fechar menu ao clicar
+            onMenuToggle(false) // Close menu when clicking
           }} style={{ cursor: 'pointer' }}>
             <img src="/android-chrome-192x192.png" alt="RVC" className="header-logo" />
             <span className="header-title">Rover Vacuum Cleaner</span>
           </div>
 
-          {/* Espaço vazio à direita para balancear */}
+          {/* Empty space on the right for balance */}
           <div className="header-spacer"></div>
         </div>
       </header>
 
-      {/* Overlay para fechar o menu */}
+      {/* Overlay to close menu */}
       {isMenuOpen && (
         <div 
           className="header-menu-overlay"
@@ -71,18 +71,17 @@ const FixedHeader = ({ activeSection, onSectionClick, isMenuOpen, onMenuToggle, 
         />
       )}
 
-      {/* Menu dropdown */}
+      {/* Dropdown menu */}
       <div className={`header-menu ${isMenuOpen ? 'open' : ''}`}>
         <nav className="header-menu-nav">
           {menuItems.map((item) => {
-            const IconComponent = item.icon
             return (
               <button
                 key={item.id}
                 className={`header-nav-item ${activeSection === item.id ? 'active' : ''}`}
                 onClick={() => handleSectionClick(item.id)}
               >
-                <IconComponent size={18} className="header-nav-icon" />
+                <span className="header-nav-emoji">{item.emoji}</span>
                 <span className="header-nav-label">{item.label}</span>
               </button>
             )
@@ -92,7 +91,7 @@ const FixedHeader = ({ activeSection, onSectionClick, isMenuOpen, onMenuToggle, 
         <div className="header-menu-footer">
           <div className="header-status-indicator">
             <div className="header-status-dot online"></div>
-            <span>Sistema Online</span>
+            <span>System Online</span>
           </div>
         </div>
       </div>

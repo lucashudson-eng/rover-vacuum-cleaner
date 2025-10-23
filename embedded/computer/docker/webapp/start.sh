@@ -27,7 +27,7 @@ sleep 2
 # Iniciar frontend em background
 echo "🟢 Iniciando frontend (Node.js) na porta 3000..."
 cd /app/frontend
-npm start &
+node server.js &
 FRONTEND_PID=$!
 
 # Aguardar frontend inicializar

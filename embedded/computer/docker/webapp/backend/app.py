@@ -1,13 +1,72 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Response
 from flask_cors import CORS
 from datetime import datetime
 import os
+import cv2
+import threading
+import time
 
 app = Flask(__name__)
 CORS(app)
 
 # Configuração
 PORT = int(os.environ.get('PORT', 8000))
+
+# Configuração da câmera
+CAMERA_DEVICE = '/dev/video0'
+camera = None
+camera_lock = threading.Lock()
+
+def get_camera():
+    """Inicializa e retorna a câmera"""
+    global camera
+    with camera_lock:
+        if camera is None:
+            try:
+                camera = cv2.VideoCapture(CAMERA_DEVICE)
+                camera.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+                camera.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+                camera.set(cv2.CAP_PROP_FPS, 30)
+                print(f"Câmera inicializada: {CAMERA_DEVICE}")
+            except Exception as e:
+                print(f"Erro ao inicializar câmera: {e}")
+                return None
+        return camera
+
+def generate_frames():
+    """Gera frames da câmera para streaming MJPEG"""
+    cam = get_camera()
+    if cam is None:
+        return
+    
+    while True:
+        try:
+            success, frame = cam.read()
+            if not success:
+                print("Erro ao capturar frame da câmera")
+                break
+            
+            # Redimensiona o frame se necessário
+            frame = cv2.resize(frame, (1280, 720))
+            
+            # Codifica o frame como JPEG
+            ret, buffer = cv2.imencode('.jpg', frame, [cv2.IMWRITE_JPEG_QUALITY, 85])
+            if not ret:
+                continue
+            
+            # Converte para bytes
+            frame_bytes = buffer.tobytes()
+            
+            # Envia o frame no formato MJPEG
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+            
+            # Pequena pausa para controlar FPS
+            time.sleep(1/30)
+            
+        except Exception as e:
+            print(f"Erro no streaming: {e}")
+            break
 
 @app.route('/')
 def home():
@@ -36,6 +95,39 @@ def get_data():
         ],
         'total': 3
     })
+
+@app.route('/video_feed')
+def video_feed():
+    """Endpoint para streaming MJPEG da câmera"""
+    return Response(generate_frames(),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/api/camera/status', methods=['GET'])
+def camera_status():
+    """Verifica o status da câmera"""
+    cam = get_camera()
+    if cam is None:
+        return jsonify({
+            'status': 'error',
+            'message': 'Câmera não disponível',
+            'device': CAMERA_DEVICE
+        })
+    
+    # Testa se a câmera está funcionando
+    success, frame = cam.read()
+    if success:
+        return jsonify({
+            'status': 'ok',
+            'message': 'Câmera funcionando',
+            'device': CAMERA_DEVICE,
+            'resolution': f"{int(cam.get(cv2.CAP_PROP_FRAME_WIDTH))}x{int(cam.get(cv2.CAP_PROP_FRAME_HEIGHT))}"
+        })
+    else:
+        return jsonify({
+            'status': 'error',
+            'message': 'Erro ao capturar frame da câmera',
+            'device': CAMERA_DEVICE
+        })
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=PORT, debug=True)

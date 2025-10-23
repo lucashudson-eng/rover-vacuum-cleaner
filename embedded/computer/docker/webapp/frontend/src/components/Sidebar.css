@@ -78,6 +78,10 @@
   border-left-color: #3498db;
 }
 
+.nav-item:hover .nav-emoji {
+  transform: scale(1.1);
+}
+
 .nav-item.active {
   background: rgba(52, 152, 219, 0.2);
   border-left-color: #3498db;
@@ -91,6 +95,11 @@
 .nav-icon {
   color: #bdc3c7;
   transition: color 0.3s ease;
+}
+
+.nav-emoji {
+  font-size: 1.2em;
+  transition: transform 0.3s ease;
 }
 
 .nav-label {
