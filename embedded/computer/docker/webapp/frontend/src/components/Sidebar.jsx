@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Sidebar.css'
+import { BACKEND_URL } from '../config.js'
 
 const Sidebar = ({ activeSection, onSectionClick, isOpen, onLogoClick }) => {
   const [roverData, setRoverData] = useState({
@@ -17,7 +18,7 @@ const Sidebar = ({ activeSection, onSectionClick, isOpen, onLogoClick }) => {
   // Função para buscar dados do rover
   const fetchRoverData = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/rover/status')
+      const response = await fetch(`${BACKEND_URL}/api/rover/status`)
       if (response.ok) {
         const data = await response.json()
         setRoverData(data)

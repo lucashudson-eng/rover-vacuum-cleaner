@@ -76,6 +76,24 @@ Para acessar de outros dispositivos na rede local:
    - URL: `http://SEU_IP:3000`
    - Exemplo: `http://192.168.1.100:3000`
 
+## Variáveis de Ambiente
+
+### Frontend
+
+- `VITE_BACKEND_URL`: URL do backend usada pelo frontend. Se não definida, o frontend usa automaticamente `http://<hostname_atual>:8000`.
+
+Exemplos:
+
+```bash
+# Usando localhost durante desenvolvimento
+export VITE_BACKEND_URL=http://localhost:8000
+
+# Usando IP da sua BTT/host na LAN
+export VITE_BACKEND_URL=http://192.168.1.100:8000
+```
+
+Ao usar Docker, você pode passar com `-e VITE_BACKEND_URL=...` se estiver executando o frontend em modo dev. No build de produção já é feito o inferimento automático pelo hostname.
+
 ## Configuração da Câmera
 
 ### Pré-requisitos

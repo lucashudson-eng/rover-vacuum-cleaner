@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import './FixedHeader.css'
+import { BACKEND_URL } from '../config.js'
 
 const FixedHeader = ({ activeSection, onSectionClick, isMenuOpen, onMenuToggle, onLogoClick }) => {
   const [isVisible, setIsVisible] = useState(false)
@@ -12,7 +13,7 @@ const FixedHeader = ({ activeSection, onSectionClick, isMenuOpen, onMenuToggle, 
   // Função para buscar dados do rover
   const fetchRoverData = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/rover/status')
+      const response = await fetch(`${BACKEND_URL}/api/rover/status`)
       if (response.ok) {
         const data = await response.json()
         setRoverData(data)

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Section.css'
+import { BACKEND_URL } from '../config.js'
 
 const Camera = () => {
   const [isStreaming, setIsStreaming] = useState(false)
@@ -14,7 +15,7 @@ const Camera = () => {
 
   const checkCameraStatus = async () => {
     try {
-      const response = await fetch('http://192.168.100.134:8000/api/camera/status')
+      const response = await fetch(`${BACKEND_URL}/api/camera/status`)
       const data = await response.json()
       
       if (data.status === 'ok') {
@@ -61,7 +62,7 @@ const Camera = () => {
             ) : isStreaming ? (
               <div className="stream-container">
                 <img 
-                  src="http://192.168.100.134:8000/video_feed" 
+                  src={`${BACKEND_URL}/video_feed`} 
                   alt="Camera Stream"
                   className="video-stream"
                   style={{ 

@@ -34,8 +34,9 @@ FRONTEND_PID=$!
 sleep 2
 
 echo "✅ Aplicação embarcada rodando!"
-echo "   Frontend: http://localhost:3000"
-echo "   Backend:  http://localhost:8000"
+HOST_IP=$(hostname -I | awk '{print $1}')
+echo "   Frontend: http://localhost:3000  (ou http://$HOST_IP:3000)"
+echo "   Backend:  http://localhost:8000  (ou http://$HOST_IP:8000)"
 
 # Aguardar qualquer processo terminar
 wait
