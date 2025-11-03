@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Map } from 'lucide-react'
 import './Section.css'
 
 const Mapa = () => {
@@ -32,7 +31,7 @@ const Mapa = () => {
   return (
     <section id="mapa" className="section">
       <div className="section-header">
-        <h2><Map size={24} className="section-icon" /> Mapa de Navegação</h2>
+        <h2><span className="section-emoji">🗺️</span> Navigation Map</h2>
       </div>
       
       <div className="mapa-container">
@@ -41,7 +40,7 @@ const Mapa = () => {
             <div key={i} className="grid-cell"></div>
           ))}
           
-          {/* Áreas já limpas */}
+          {/* Already cleaned areas */}
           {cleanedAreas.map(area => (
             <div
               key={area.id}

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Settings } from 'lucide-react'
 import './Section.css'
 
 const Configuracoes = () => {
@@ -35,19 +34,19 @@ const Configuracoes = () => {
   }
 
   const saveSettings = () => {
-    // Aqui você salvaria as configurações no backend
-    console.log('Configurações salvas:', settings)
-    alert('Configurações salvas com sucesso!')
+    // Here you would save the settings to the backend
+    console.log('Settings saved:', settings)
+    alert('Settings saved successfully!')
   }
 
   return (
     <section id="configuracoes" className="section">
       <div className="section-header">
-        <h2><Settings size={24} className="section-icon" /> Configurações</h2>
+        <h2><span className="section-emoji">⚙️</span> Settings</h2>
       </div>
       
       <div className="configuracoes-container">
-        {/* Seção vazia - será configurada posteriormente */}
+        {/* Empty section - will be configured later */}
       </div>
     </section>
   )

@@ -1,14 +1,39 @@
-import React from 'react'
-import { Map, Camera, Gamepad2, Settings } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
 import './Sidebar.css'
+import { BACKEND_URL } from '../config.js'
 
 const Sidebar = ({ activeSection, onSectionClick, isOpen, onLogoClick }) => {
+  const [roverData, setRoverData] = useState({
+    battery: { percentage: 0 },
+    power: { current_consumption: 0 }
+  })
+
   const menuItems = [
-    { id: 'mapa', label: 'Mapa', icon: Map },
-    { id: 'camera', label: 'Câmera', icon: Camera },
-    { id: 'controle', label: 'Controle', icon: Gamepad2 },
-    { id: 'configuracoes', label: 'Configurações', icon: Settings }
+    { id: 'mapa', label: 'Map', emoji: '🗺️' },
+    { id: 'camera', label: 'Camera', emoji: '📷' },
+    { id: 'controle', label: 'Control', emoji: '🎮' },
+    { id: 'configuracoes', label: 'Settings', emoji: '⚙️' }
   ]
+
+  // Função para buscar dados do rover
+  const fetchRoverData = async () => {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/rover/status`)
+      if (response.ok) {
+        const data = await response.json()
+        setRoverData(data)
+      }
+    } catch (error) {
+      console.error('Erro ao buscar dados do rover:', error)
+    }
+  }
+
+  // Atualiza dados do rover a cada 5 segundos
+  useEffect(() => {
+    fetchRoverData()
+    const interval = setInterval(fetchRoverData, 5000)
+    return () => clearInterval(interval)
+  }, [])
 
   return (
     <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
@@ -21,14 +46,13 @@ const Sidebar = ({ activeSection, onSectionClick, isOpen, onLogoClick }) => {
       
       <nav className="sidebar-nav">
         {menuItems.map((item) => {
-          const IconComponent = item.icon
           return (
             <button
               key={item.id}
               className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
               onClick={() => onSectionClick(item.id)}
             >
-              <IconComponent size={20} className="nav-icon" />
+              <span className="nav-emoji">{item.emoji}</span>
               <span className="nav-label">{item.label}</span>
             </button>
           )
@@ -36,9 +60,11 @@ const Sidebar = ({ activeSection, onSectionClick, isOpen, onLogoClick }) => {
       </nav>
       
       <div className="sidebar-footer">
-        <div className="status-indicator">
-          <div className="status-dot online"></div>
-          <span>Sistema Online</span>
+        <div className="rover-data">
+          <span className="rover-icon">🔋</span>
+          <span className="rover-value">{roverData.battery.percentage}%</span>
+          <span className="rover-icon">⚡</span>
+          <span className="rover-value">{roverData.power.current_consumption}A</span>
         </div>
       </div>
     </aside>

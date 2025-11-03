@@ -89,9 +89,8 @@ function App() {
         <Camera />
         <Controle />
         <Configuracoes />
-      </main>
-      
-      <footer className="app-footer">
+        
+        <footer className="app-footer">
         <div className="footer-content">
         <p>
             © 2025 Lucas Hudson&nbsp;|&nbsp;
@@ -123,7 +122,8 @@ function App() {
             </a>
             </p>
         </div>
-      </footer>
+        </footer>
+      </main>
     </div>
   )
 }

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Gamepad2 } from 'lucide-react'
 import './Section.css'
 
 const Controle = () => {
@@ -24,11 +23,11 @@ const Controle = () => {
   return (
     <section id="controle" className="section">
       <div className="section-header">
-        <h2><Gamepad2 size={24} className="section-icon" /> Controle Manual</h2>
+        <h2><span className="section-emoji">🎮</span> Manual Control</h2>
       </div>
       
       <div className="controle-container">
-        {/* Seção vazia - será configurada posteriormente */}
+        {/* Empty section - will be configured later */}
       </div>
     </section>
   )
