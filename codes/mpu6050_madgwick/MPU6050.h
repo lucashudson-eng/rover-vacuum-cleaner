@@ -16,22 +16,19 @@
 #define GYRO_SCALE 250.0f / 32768.0f
 #define ACCEL_SCALE 2.0f / 32768.0f
 
-class MPU9250 {
+class MPU6050 {
 public:
-    MPU9250();
+    MPU6050();
 
-    bool mpu9250_init();
-    bool ak8963_init();
+    bool mpu6050_init();
 
     bool readIMU(float* ax, float* ay, float* az, float* gx, float* gy, float* gz);
-    bool readMag(float* mx, float* my, float* mz);
 
 private:
     // I2C addresses
-    static constexpr uint8_t MPU9250_ADDR = 0x68;
-    static constexpr uint8_t AK8963_ADDR = 0x0C;
+    static constexpr uint8_t MPU6050_ADDR = 0x68;
 
-    // MPU9250 registers
+    // MPU6050 registers
     static constexpr uint8_t PWR_MGMT_1   = 0x6B;
     static constexpr uint8_t CONFIG_REG   = 0x1A;
     static constexpr uint8_t GYRO_CONFIG  = 0x1B;
@@ -41,18 +38,10 @@ private:
     static constexpr uint8_t INT_ENABLE   = 0x38;
     static constexpr uint8_t ACCEL_XOUT_H = 0x3B;
 
-    // AK8963 registers
-    static constexpr uint8_t ST1   = 0x02;
-    static constexpr uint8_t HXL   = 0x03; // not used directly, kept for reference
-    static constexpr uint8_t CNTL1 = 0x0A;
-
     float gyroScale;
     float accelScale;
-    float magScale;
 
     bool writeRegister(uint8_t deviceAddr, uint8_t regAddr, uint8_t data);
     bool readRegister(uint8_t deviceAddr, uint8_t regAddr, uint8_t* data, uint8_t length);
     uint8_t readRegister(uint8_t deviceAddr, uint8_t regAddr);
 };
-
-

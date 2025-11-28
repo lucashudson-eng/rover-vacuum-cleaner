@@ -1,16 +1,16 @@
 /*
- * IMU 9DOF with Madgwick AHRS for Arduino ESP32
- * Uses MPU9250 IMU with Madgwick filter for orientation estimation
- * Custom MPU9250 implementation using Wire library
+ * IMU 6DOF with Madgwick AHRS for Arduino ESP32
+ * Uses MPU6050 IMU with Madgwick filter for orientation estimation
+ * Custom MPU6050 implementation using Wire library
  * 
  * Hardware:
  * - ESP32 Dev Board
- * - MPU9250 9DOF IMU (Accelerometer + Gyroscope + Magnetometer)
+ * - MPU6050 6DOF IMU (Accelerometer + Gyroscope)
  * 
  * Pin Configuration:
- * - SDA: GPIO 21
- * - SCL: GPIO 22
- * - INT: GPIO 23 (optional, for interrupt-driven reading)
+ * - SDA: GPIO A4
+ * - SCL: GPIO A5
+ * - INT: GPIO A3 (optional, for interrupt-driven reading)
  * 
  * Libraries Required:
  * - MadgwickAHRS (by Paul Stoffregen)
@@ -22,15 +22,15 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
-#include "MPU9250.h"
+#include "MPU6050.h"
 
 // ----- I2C CONFIGURATION -----
-#define I2C_SDA_PIN 21
-#define I2C_SCL_PIN 22
+#define I2C_SDA_PIN A4
+#define I2C_SCL_PIN A5
 #define I2C_FREQ 400000
 
 // ----- INTERRUPT CONFIGURATION -----
-#define INT_PIN 23
+#define INT_PIN A3
 
 // ----- SAMPLING CONFIGURATION -----
 #define SAMPLE_RATE_HZ 100
@@ -48,13 +48,12 @@ unsigned long lastReadTime = 0;
 // Data storage
 float ax, ay, az;  // Accelerometer (g)
 float gx, gy, gz;  // Gyroscope (deg/s)
-float mx, my, mz;  // Magnetometer (µT)
 
 // Orientation results
 float roll, pitch, yaw;
 
 // Driver da IMU
-MPU9250 imu;
+MPU6050 imu;
 
 // ----- INTERRUPT HANDLER -----
 void IRAM_ATTR mpu_intr_handler() {
@@ -88,18 +87,9 @@ void imu_task(void *parameter) {
             // Read IMU data (accelerometer + gyroscope) in one transaction
             bool dataValid = imu.readIMU(&ax, &ay, &az, &gx, &gy, &gz);
             
-            // Read magnetometer data
-            bool magValid = imu.readMag(&mx, &my, &mz);
-            
             if (dataValid) {
-                // Update Madgwick filter
-                if (magValid) {
-                    // Use full 9DOF data (IMU + magnetometer)
-                    filter.update(gx, gy, gz, ax, ay, az, mx, my, mz);
-                } else {
-                    // Fallback to IMU-only mode
-                    filter.updateIMU(gx, gy, gz, ax, ay, az);
-                }
+                // Update Madgwick filter with IMU-only mode (6DOF)
+                filter.updateIMU(gx, gy, gz, ax, ay, az);
                 
                 // Get Euler angles (in degrees)
                 roll = filter.getRoll();
@@ -117,9 +107,7 @@ void imu_task(void *parameter) {
                 Serial.print("  Pitch: ");
                 Serial.print(pitch, 2);
                 Serial.print("  Yaw: ");
-                Serial.print(yaw, 2);
-                Serial.print("  Mag: ");
-                Serial.println(magValid ? "OK" : "FAIL");
+                Serial.println(yaw, 2);
             } else {
                 Serial.println("Failed to read IMU data");
             }
@@ -130,25 +118,19 @@ void imu_task(void *parameter) {
 // ----- ARDUINO SETUP -----
 void setup() {
     Serial.begin(115200);
-    Serial.println("IMU 9DOF with Madgwick AHRS - Starting...");
+    Serial.println("IMU 6DOF with Madgwick AHRS - Starting...");
     
     // Initialize I2C
     Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN);
     Wire.setClock(I2C_FREQ);
     Serial.println("I2C initialized");
     
-    // Initialize MPU9250
-    if (!imu.mpu9250_init()) {
-        Serial.println("Failed to initialize MPU9250!");
+    // Initialize MPU6050
+    if (!imu.mpu6050_init()) {
+        Serial.println("Failed to initialize MPU6050!");
         while (1) {
             delay(1000);
         }
-    }
-    
-    // Initialize AK8963 magnetometer
-    if (!imu.ak8963_init()) {
-        Serial.println("Failed to initialize AK8963 magnetometer!");
-        // Continue without magnetometer
     }
     
     // Create queue for interrupt communication
