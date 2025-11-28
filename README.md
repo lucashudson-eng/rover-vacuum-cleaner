@@ -60,8 +60,3 @@ Autonomous robotic rover designed for navigation and task execution, inspired by
 
 - SDA - A4 (GPIO11)
 - SCL - A5 (GPIO12)
-
-### TCA9548A
-
-- A0 - A6 (GPIO13)
-- A1 - A7 (GPIO14)

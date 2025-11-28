@@ -25,8 +25,8 @@ void loop() {
   // Motores para frente
   digitalWrite(AIN1, HIGH);
   digitalWrite(AIN2, LOW);
-  digitalWrite(BIN1, HIGH);
-  digitalWrite(BIN2, LOW);
+  digitalWrite(BIN1, LOW);
+  digitalWrite(BIN2, HIGH);
   analogWrite(PWMA, 255);
   analogWrite(PWMB, 255);
   delay(1000);
@@ -39,8 +39,8 @@ void loop() {
   // Motores para trás
   digitalWrite(AIN1, LOW);
   digitalWrite(AIN2, HIGH);
-  digitalWrite(BIN1, LOW);
-  digitalWrite(BIN2, HIGH);
+  digitalWrite(BIN1, HIGH);
+  digitalWrite(BIN2, LOW);
   analogWrite(PWMA, 255);
   analogWrite(PWMB, 255);
   delay(1000);
