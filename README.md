@@ -39,7 +39,7 @@ Autonomous robotic rover designed for navigation and task execution, inspired by
 
 ### ISR
 
-- 3xTOF050C - A2 (GPIO3)
+- 3xVL6180X - A2 (GPIO3)
 - MPU6050 - A3 (GPIO4)
 - Motor Encoder Back Left C1 - D2 (GPIO5)
 - Motor Encoder Back Left C2 - D3 (GPIO6)
@@ -56,7 +56,7 @@ Autonomous robotic rover designed for navigation and task execution, inspired by
 - BIN2 - D11 (GPIO38)
 - PWMB - D12 (GPIO47)
 
-### I2C (MPU6050, TCA9548A (3xTOF050C), INA219)
+### I2C (MPU6050, TCA9548A (3xVL6180X), INA219)
 
 - SDA - A4 (GPIO11)
 - SCL - A5 (GPIO12)

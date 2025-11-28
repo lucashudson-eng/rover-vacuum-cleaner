@@ -4,12 +4,12 @@
  * Custom MPU6050 implementation using Wire library
  * 
  * Hardware:
- * - ESP32 Dev Board
+ * - Arduino Nano ESP32 Dev Board
  * - MPU6050 6DOF IMU (Accelerometer + Gyroscope)
  * 
  * Pin Configuration:
- * - SDA: GPIO A4
- * - SCL: GPIO A5
+ * - SDA: GPIO A4 (default)
+ * - SCL: GPIO A5 (default)
  * - INT: GPIO A3 (optional, for interrupt-driven reading)
  * 
  * Libraries Required:
@@ -23,11 +23,6 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 #include "MPU6050.h"
-
-// ----- I2C CONFIGURATION -----
-#define I2C_SDA_PIN A4
-#define I2C_SCL_PIN A5
-#define I2C_FREQ 400000
 
 // ----- INTERRUPT CONFIGURATION -----
 #define INT_PIN A3
@@ -121,8 +116,7 @@ void setup() {
     Serial.println("IMU 6DOF with Madgwick AHRS - Starting...");
     
     // Initialize I2C
-    Wire.begin(I2C_SDA_PIN, I2C_SCL_PIN);
-    Wire.setClock(I2C_FREQ);
+    Wire.begin();
     Serial.println("I2C initialized");
     
     // Initialize MPU6050
